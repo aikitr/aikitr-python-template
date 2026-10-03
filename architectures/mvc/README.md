@@ -82,7 +82,7 @@ SQLite 结构变化使用 Alembic；Cloudflare Worker 的 D1 结构变化使用�
 
 ## GitHub 自动部署
 
-在 Cloudflare Workers Builds 中连接 `aikitr/aikitr-python-template`，并设置：
+当前 Worker 已连接 Cloudflare Workers Builds。推送到 `main` 且改动命中 MVC 目录时，会自动构建并部署；配置如下：
 
 - 生产分支：`main`
 - Root directory：`/architectures/mvc`
