@@ -61,10 +61,10 @@ uv run pywrangler d1 migrations apply aikitr-mvc-tasks --remote
 
 ## 已部署的 Worker
 
-Worker 名称为 `aikitr-mvc-api`。首次部署后，Cloudflare 会提供对应的 `workers.dev` URL；将该 URL 设为 `WORKER_URL` 后，可以这样调用：
+Worker 名称为 `aikitr-mvc-api`，线上地址为 <https://aikitr-mvc-api.656469722.workers.dev>。将该 URL 设为 `WORKER_URL` 后，可以这样调用：
 
 ```sh
-export WORKER_URL="https://<deployed-workers.dev-url>"
+export WORKER_URL="https://aikitr-mvc-api.656469722.workers.dev"
 curl "$WORKER_URL/health"
 curl -X POST "$WORKER_URL/tasks" \
   -H 'Content-Type: application/json' \

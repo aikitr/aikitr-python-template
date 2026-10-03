@@ -1,9 +1,42 @@
+import os
+import subprocess
+import sys
+from pathlib import Path
+
 import pytest
 from fake_d1 import FakeD1
 from fastapi.testclient import TestClient
 
 from app.controllers.d1_tasks import get_d1_database
 from app.worker_app import create_worker_app
+
+
+def test_worker_bootstrap_does_not_require_sqlalchemy():
+    project_root = Path(__file__).resolve().parents[1]
+    script = """
+import builtins
+
+original_import = builtins.__import__
+
+def import_without_sqlalchemy(name, *args, **kwargs):
+    if name == "sqlalchemy" or name.startswith("sqlalchemy."):
+        raise ModuleNotFoundError("No module named 'sqlalchemy'")
+    return original_import(name, *args, **kwargs)
+
+builtins.__import__ = import_without_sqlalchemy
+from app.worker_app import create_worker_app
+create_worker_app()
+"""
+    result = subprocess.run(
+        [sys.executable, "-c", script],
+        cwd=project_root,
+        env={**os.environ, "PYTHONPATH": str(project_root / "src")},
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    assert result.returncode == 0, result.stderr
 
 
 @pytest.fixture
