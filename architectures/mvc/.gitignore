@@ -4,8 +4,13 @@ __pycache__/
 *.egg-info/
 .pytest_cache/
 .ruff_cache/
+.cloudflare-tools/
+.venv-workers/
+.wrangler/
+python_modules/
 *.py[cod]
 .env
+.dev.vars
 *.db
 *.sqlite
 *.sqlite3
