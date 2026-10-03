@@ -10,7 +10,7 @@
     {
       "binding": "DB",
       "database_name": "aikitr-mvc-tasks",
-      "database_id": "00000000-0000-4000-8000-000000000000",
+      "database_id": "f0e3e296-0521-4285-9a20-5af3ff333eb4",
       "migrations_dir": "migrations"
     }
   ]
